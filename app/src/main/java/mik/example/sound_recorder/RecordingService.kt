@@ -25,6 +25,8 @@ class RecordingService : Service() {
     private var mRecorder: MediaRecorder? = null
     private var mDatabase: DBHelper? = null
     private var mStartingTimeMillis: Long = 0
+    private var mPauseTimeMillisTemp: Long = 0
+    private var mPauseTimeMillis: Long = 0
     private var mElapsedMillis: Long = 0
     private var mElapsedSeconds = 0
     private val onTimerChangedListener: OnTimerChangedListener? = null
@@ -44,7 +46,13 @@ class RecordingService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        startRecording()
+        if (intent.action != null) {
+            when(intent.action) {
+                "start" -> startRecording()
+                "pause" -> pauseRecording(true)
+                "unpause" -> pauseRecording(false)
+            }
+        }
         return START_STICKY
     }
 
@@ -79,6 +87,16 @@ class RecordingService : Service() {
         }
     }
 
+    fun pauseRecording(pause: Boolean) {
+        if (pause) {
+            mRecorder!!.pause()
+            mPauseTimeMillisTemp = System.currentTimeMillis()
+        } else {
+            mRecorder!!.resume()
+            mPauseTimeMillis += System.currentTimeMillis() - mPauseTimeMillisTemp
+        }
+    }
+
     fun setFileNameAndPath() {
         var count = 0
         var f: File
@@ -94,7 +112,7 @@ class RecordingService : Service() {
 
     fun stopRecording() {
         mRecorder!!.stop()
-        mElapsedMillis = System.currentTimeMillis() - mStartingTimeMillis
+        mElapsedMillis = System.currentTimeMillis() - mStartingTimeMillis - mPauseTimeMillis
         mRecorder!!.release()
         Toast.makeText(
             this,

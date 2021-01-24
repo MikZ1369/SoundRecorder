@@ -76,7 +76,6 @@ class RecordFragment : Fragment() {
                 //folder /SoundRecorder doesn't exist, create the folder
                 folder.mkdir()
             }
-
             //start Chronometer
             mChronometer!!.base = SystemClock.elapsedRealtime()
             mChronometer!!.start()
@@ -93,11 +92,13 @@ class RecordFragment : Fragment() {
             }
 
             //start RecordingService
+            intent.action = "start"
             activity!!.startService(intent)
             //keep screen on while recording
             activity!!.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             mRecordingPrompt!!.text = getString(R.string.record_in_progress) + "."
             mRecordPromptCount++
+            mPauseButton!!.visibility = View.VISIBLE
         } else {
             //stop recording
             mRecordButton!!.setImageResource(R.drawable.ic_mic_white_36dp)
@@ -109,11 +110,13 @@ class RecordFragment : Fragment() {
             activity!!.stopService(intent)
             //allow the screen to turn off again once recording is finished
             activity!!.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            mPauseButton!!.visibility = View.GONE
         }
     }
 
     //TODO: implement pause recording
     private fun onPauseRecord(pause: Boolean) {
+        val intent = Intent(activity, RecordingService::class.java)
         if (pause) {
             //pause recording
             mPauseButton!!.setCompoundDrawablesWithIntrinsicBounds(
@@ -125,6 +128,8 @@ class RecordFragment : Fragment() {
             mRecordingPrompt!!.text = getString(R.string.resume_recording_button).toUpperCase()
             timeWhenPaused = mChronometer!!.base - SystemClock.elapsedRealtime()
             mChronometer!!.stop()
+            intent.action = "pause"
+            requireActivity().startService(intent)
         } else {
             //resume recording
             mPauseButton!!.setCompoundDrawablesWithIntrinsicBounds(
@@ -136,6 +141,8 @@ class RecordFragment : Fragment() {
             mRecordingPrompt!!.text = getString(R.string.pause_recording_button).toUpperCase()
             mChronometer!!.base = SystemClock.elapsedRealtime() + timeWhenPaused
             mChronometer!!.start()
+            intent.action = "unpause"
+            requireActivity().startService(intent)
         }
     }
 
