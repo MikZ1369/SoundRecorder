@@ -8,9 +8,7 @@ import android.provider.BaseColumns
 import mik.example.sound_recorder.listeners.OnDatabaseChangedListener
 import java.util.*
 
-/**
- * Created by Daniel on 12/29/2014.
- */
+
 class DBHelper(val context: Context) : SQLiteOpenHelper(
     context, DATABASE_NAME, null, DATABASE_VERSION
 ) {

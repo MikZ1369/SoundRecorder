@@ -26,9 +26,6 @@ import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by Daniel on 12/29/2014.
- */
 class FileViewerAdapter(var mContext: Context, linearLayoutManager: LinearLayoutManager) :
     RecyclerView.Adapter<RecordingsViewHolder>(), OnDatabaseChangedListener {
     private val mDatabase: DBHelper
@@ -126,7 +123,6 @@ class FileViewerAdapter(var mContext: Context, linearLayoutManager: LinearLayout
         llm.scrollToPosition(itemCount - 1)
     }
 
-    //TODO
     override fun onDatabaseEntryRenamed() {}
     fun remove(position: Int) {
         //remove item from database, recyclerview and storage
@@ -145,7 +141,6 @@ class FileViewerAdapter(var mContext: Context, linearLayoutManager: LinearLayout
         notifyItemRemoved(position)
     }
 
-    //TODO
     fun removeOutOfApp(filePath: String?) {
         //user deletes a saved recording out of the application through another application
     }

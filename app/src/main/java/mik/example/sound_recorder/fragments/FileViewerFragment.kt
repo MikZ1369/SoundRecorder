@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import mik.example.sound_recorder.R
 import mik.example.sound_recorder.adapters.FileViewerAdapter
 
-/**
- * Created by Daniel on 12/23/2014.
- */
 class FileViewerFragment : Fragment() {
     private var position = 0
     private var mFileViewerAdapter: FileViewerAdapter? = null

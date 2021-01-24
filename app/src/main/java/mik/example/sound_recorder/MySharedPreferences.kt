@@ -3,9 +3,7 @@ package mik.example.sound_recorder
 import android.content.Context
 import android.preference.PreferenceManager
 
-/**
- * Created by Daniel on 5/22/2017.
- */
+
 object MySharedPreferences {
     private const val PREF_HIGH_QUALITY = "pref_high_quality"
     fun setPrefHighQuality(context: Context?, isEnabled: Boolean) {

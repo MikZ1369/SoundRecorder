@@ -19,13 +19,7 @@ import mik.example.sound_recorder.R
 import mik.example.sound_recorder.RecordingService
 import java.io.File
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the [RecordFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class RecordFragment : Fragment() {
     private var position = 0
 

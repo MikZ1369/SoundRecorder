@@ -18,9 +18,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Created by Daniel on 12/28/2014.
- */
+
 class RecordingService : Service() {
     private var mFileName: String? = null
     private var mFilePath: String? = null
@@ -130,7 +128,6 @@ class RecordingService : Service() {
         mTimer!!.scheduleAtFixedRate(mIncrementTimerTask, 1000, 1000)
     }
 
-    //TODO:
     private fun createNotification(): Notification {
         val mBuilder = NotificationCompat.Builder(applicationContext)
             .setSmallIcon(R.drawable.ic_mic_white_36dp)

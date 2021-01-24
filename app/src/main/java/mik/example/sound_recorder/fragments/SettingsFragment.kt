@@ -9,9 +9,7 @@ import mik.example.sound_recorder.MySharedPreferences
 import mik.example.sound_recorder.R
 import mik.example.sound_recorder.activities.SettingsActivity
 
-/**
- * Created by Daniel on 5/22/2017.
- */
+
 class SettingsFragment : PreferenceFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +22,5 @@ class SettingsFragment : PreferenceFragment() {
                 MySharedPreferences.setPrefHighQuality(activity, newValue as Boolean)
                 true
             }
-        val aboutPref = findPreference(getString(R.string.pref_about_key))
-        aboutPref.summary = getString(R.string.pref_about_desc)
-        aboutPref.onPreferenceClickListener = OnPreferenceClickListener {
-            val licensesFragment = LicensesFragment()
-            licensesFragment.show(
-                (activity as SettingsActivity).supportFragmentManager.beginTransaction(),
-                "dialog_licenses"
-            )
-            true
-        }
     }
 }

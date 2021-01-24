@@ -7,9 +7,6 @@ import androidx.appcompat.widget.Toolbar
 import mik.example.sound_recorder.R
 import mik.example.sound_recorder.fragments.SettingsFragment
 
-/**
- * Created by Daniel on 5/22/2017.
- */
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

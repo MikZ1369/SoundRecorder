@@ -3,9 +3,7 @@ package mik.example.sound_recorder
 import android.os.Parcel
 import android.os.Parcelable
 
-/**
- * Created by Daniel on 12/30/2014.
- */
+
 class RecordingItem : Parcelable {
     var name // file name
             : String? = null

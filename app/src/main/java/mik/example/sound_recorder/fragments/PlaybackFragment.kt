@@ -21,9 +21,7 @@ import mik.example.sound_recorder.RecordingItem
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by Daniel on 1/1/2015.
- */
+
 class PlaybackFragment : DialogFragment() {
     private var item: RecordingItem? = null
     private val mHandler = Handler()
